@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Circle, MoveRight } from "lucide-react";
+import { Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import AnimatedDemoButton from "@/components/ui/button-with-icon";
 
 function ElegantShape({
   className,
@@ -141,7 +141,7 @@ function HeroGeometric({
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             custom={0}
             variants={fadeUpVariants}
@@ -161,14 +161,13 @@ function HeroGeometric({
             initial="hidden"
             animate="visible"
           >
-            <h1 className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-8xl font-bold mb-6 md:mb-8 tracking-tight leading-[1.1]">
-              <span className="text-foreground whitespace-nowrap">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[5.75rem] font-bold mb-6 md:mb-8 tracking-tight leading-[1.15] pb-1">
+              <span className="block text-foreground">
                 {title1}
               </span>
-              <br />
               <span
                 className={cn(
-                  "bg-clip-text text-transparent bg-gradient-to-r from-green-800 via-green-700 to-emerald-600 dark:from-green-400 dark:via-green-300 dark:to-emerald-400 whitespace-nowrap"
+                  "block bg-clip-text text-transparent bg-gradient-to-r from-green-800 via-green-700 to-emerald-600 dark:from-green-400 dark:via-green-300 dark:to-emerald-400"
                 )}
               >
                 {title2}
@@ -198,12 +197,7 @@ function HeroGeometric({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button
-                size="lg"
-                className="gap-3 bg-green-800 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-500 text-white font-semibold h-14 px-10 text-base rounded-xl"
-              >
-                Request a Demo <MoveRight className="w-5 h-5" />
-              </Button>
+              <AnimatedDemoButton text="Request a Demo" variant="dark" />
             </a>
           </motion.div>
         </div>

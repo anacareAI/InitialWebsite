@@ -3,9 +3,9 @@
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import { Timeline } from "@/components/ui/timeline";
 import { Button } from "@/components/ui/button";
+import AnimatedDemoButton from "@/components/ui/button-with-icon";
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import {
-  MoveRight,
   User,
   TrendingUp,
   DollarSign,
@@ -32,34 +32,8 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import Lenis from "lenis";
 import React, { useRef, useState, useEffect, useCallback } from "react";
-
-function useSlowScroll() {
-  return useCallback((elementId: string) => {
-    const target = document.getElementById(elementId);
-    if (!target) return;
-
-    const navHeight = 80;
-    const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight;
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    const duration = 1400;
-    let start: number | null = null;
-
-    function ease(t: number) {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function step(now: number) {
-      if (start === null) start = now;
-      const progress = Math.min((now - start) / duration, 1);
-      window.scrollTo(0, startY + distance * ease(progress));
-      if (progress < 1) requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }, []);
-}
 
 const timelineData = [
   {
@@ -736,12 +710,7 @@ function CTASection() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button
-              size="lg"
-              className="gap-3 bg-white text-green-900 hover:bg-green-50 font-semibold h-14 px-12 text-base rounded-xl"
-            >
-              Request a Demo <MoveRight className="w-5 h-5" />
-            </Button>
+            <AnimatedDemoButton text="Request a Demo" variant="light" />
           </a>
         </motion.div>
       </div>
@@ -771,14 +740,14 @@ function Navbar({
           <a
             href="#results"
             onClick={(e) => { e.preventDefault(); scrollTo("results"); }}
-            className="text-sm text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+            className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors cursor-pointer"
           >
             Results
           </a>
           <a
             href="#how-it-works"
             onClick={(e) => { e.preventDefault(); scrollTo("how-it-works"); }}
-            className="text-sm text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+            className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors cursor-pointer"
           >
             How It Works
           </a>
@@ -794,7 +763,7 @@ function Navbar({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button size="sm" className="bg-green-800 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-500">
+            <Button size="sm" className="bg-green-800 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-500 text-white">
               Request Demo
             </Button>
           </a>
@@ -838,7 +807,36 @@ function Footer() {
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false);
-  const scrollTo = useSlowScroll();
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 3.2,
+      easing: (t: number) => 1 - Math.pow(1 - t, 5),
+      touchMultiplier: 1.2,
+      infinite: false,
+    });
+
+    lenisRef.current = lenis;
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  const scrollTo = useCallback((elementId: string) => {
+    const target = document.getElementById(elementId);
+    if (!target || !lenisRef.current) return;
+    lenisRef.current.scrollTo(target, { offset: -80, duration: 3.5 });
+  }, []);
 
   useEffect(() => {
     const stored = localStorage.getItem("anacare-theme");
