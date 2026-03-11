@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  --background: #ffffff;
+  --foreground: #0c1f17;
+
+  --card: #f8faf9;
+  --card-foreground: #0c1f17;
+
+  --primary: #1a5c3a;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f0f7f3;
+  --secondary-foreground: #14432a;
+
+  --muted: #f3f6f4;
+  --muted-foreground: #3d4f46;
+
+  --accent: #e8f2ec;
+  --accent-foreground: #14432a;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #c8d4cc;
+  --input: #c8d4cc;
+  --ring: #1a5c3a;
+}
+
+.dark {
+  --background: #0a1410;
+  --foreground: #e2ede7;
+
+  --card: #111f19;
+  --card-foreground: #e2ede7;
+
+  --primary: #4ade80;
+  --primary-foreground: #0a1410;
+
+  --secondary: #162b20;
+  --secondary-foreground: #c8ddd0;
+
+  --muted: #162b20;
+  --muted-foreground: #9ab3a5;
+
+  --accent: #1a3325;
+  --accent-foreground: #c8ddd0;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #2a4d3a;
+  --input: #2a4d3a;
+  --ring: #4ade80;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
