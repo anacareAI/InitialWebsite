@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Geist } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
+const instrumentSerif = localFont({
+  src: [
+    {
+      path: "./fonts/InstrumentSerif-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/InstrumentSerif-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
   variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geist = Geist({
+const geist = localFont({
+  src: "./fonts/Geist-Variable.woff2",
   variable: "--font-geist",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
