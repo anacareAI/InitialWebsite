@@ -1,111 +1,170 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #181818;
+  --line: rgba(255, 255, 255, 0.08);
+  --line2: rgba(255, 255, 255, 0.14);
+  --white: #ffffff;
+  --muted: rgba(255, 255, 255, 0.42);
+  --faint: rgba(255, 255, 255, 0.22);
+  --green: #1af0a0;
+  --green-dim: rgba(26, 240, 160, 0.12);
+}
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-white: var(--white);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-mono);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-:root {
-  --radius: 0.625rem;
-
-  --background: #ffffff;
-  --foreground: #0c1f17;
-
-  --card: #f8faf9;
-  --card-foreground: #0c1f17;
-
-  --primary: #1a5c3a;
-  --primary-foreground: #ffffff;
-
-  --secondary: #f0f7f3;
-  --secondary-foreground: #14432a;
-
-  --muted: #f3f6f4;
-  --muted-foreground: #3d4f46;
-
-  --accent: #e8f2ec;
-  --accent-foreground: #14432a;
-
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-
-  --border: #c8d4cc;
-  --input: #c8d4cc;
-  --ring: #1a5c3a;
-}
-
-.dark {
-  --background: #0a1410;
-  --foreground: #e2ede7;
-
-  --card: #111f19;
-  --card-foreground: #e2ede7;
-
-  --primary: #4ade80;
-  --primary-foreground: #0a1410;
-
-  --secondary: #162b20;
-  --secondary-foreground: #c8ddd0;
-
-  --muted: #162b20;
-  --muted-foreground: #9ab3a5;
-
-  --accent: #1a3325;
-  --accent-foreground: #c8ddd0;
-
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-
-  --border: #2a4d3a;
-  --input: #2a4d3a;
-  --ring: #4ade80;
+  --color-faint: var(--faint);
+  --color-green: var(--green);
+  --color-green-dim: var(--green-dim);
+  --font-serif: var(--font-instrument-serif), "Instrument Serif", serif;
+  --font-sans: var(--font-geist), "Geist", system-ui, -apple-system, sans-serif;
 }
 
 * {
-  border-color: var(--border);
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-geist), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  font-feature-settings: "ss01", "cv11";
 }
 
-html.lenis, html.lenis body {
-  height: auto;
+::selection {
+  background: var(--green);
+  color: #000;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.font-serif {
+  font-family: var(--font-instrument-serif), "Instrument Serif", serif;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+.font-sans {
+  font-family: var(--font-geist), system-ui, -apple-system, sans-serif;
 }
 
-.lenis.lenis-stopped {
+/* Grid texture overlay */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Hero grid with radial mask */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 50% at 50% 40%,
+    #000 40%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(
+    ellipse 60% 50% at 50% 40%,
+    #000 40%,
+    transparent 80%
+  );
+}
+
+/* Scroll line animation — hero scroll indicator */
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.scroll-line {
+  animation: scroll-line 1.8s infinite ease-in-out;
+}
+
+/* Pulsing green dot */
+@keyframes hero-eyebrow-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+
+.hero-eyebrow-dot {
+  animation: hero-eyebrow-dot 2s infinite ease-in-out;
+}
+
+/* Nav — sticky + blur */
+.nav-blur {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Card hover: bg2 -> bg3 */
+.card-hover {
+  background: var(--bg2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.card-hover:hover {
+  background: var(--bg3);
+}
+
+/* Noise / faint grain */
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hide scrollbar nicely on sections but keep scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Browser window chrome */
+.browser-window {
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 40px 80px -20px rgba(0, 0, 0, 0.6);
 }
