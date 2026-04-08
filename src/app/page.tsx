@@ -3,7 +3,7 @@ import { BrowserWindow } from "@/components/browser-window";
 
 const PRODUCT_URL = "https://anacare-product.vercel.app/";
 const DEMO_PATH = "/demo";
-const CONTACT_EMAIL = "contact@anacare.ai";
+const CONTACT_EMAIL = "nash@anacare.ai";
 
 export default function Home() {
   return (
