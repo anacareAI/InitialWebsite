@@ -189,10 +189,9 @@ function Hero() {
 /* ---------------- STAT STRIP ---------------- */
 function StatStrip() {
   const stats = [
-    { value: "$25,494", label: "Saved per surgical episode" },
-    { value: "179:1", label: "Return on every dollar spent" },
-    { value: "$48,943", label: "Saved on complex procedures" },
-    { value: "10M+", label: "Rates indexed across networks" },
+    { value: "3-10x", label: "Price variation for the same procedure across facilities in the same city" },
+    { value: "$15k+", label: "Typical annual employer healthcare spend per employee in fully insured plans" },
+    { value: "72%", label: "Of employees have never compared costs before choosing a provider" },
   ];
 
   return (
@@ -200,15 +199,13 @@ function StatStrip() {
       className="border-t border-b"
       style={{ borderColor: "var(--line)" }}
     >
-      <div className="max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-4">
+      <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3">
         {stats.map((stat, i) => (
           <div
             key={stat.value}
             className="relative px-6 md:px-8 py-10 md:py-14"
             style={{
               borderLeft: i > 0 ? "1px solid var(--line)" : "none",
-              borderTop:
-                i >= 2 ? "1px solid var(--line)" : "none",
             }}
           >
             <div
@@ -337,7 +334,7 @@ function Product() {
             the true cost of every surgical episode.
           </h2>
           <p
-            className="mt-6 text-[16px] leading-relaxed max-w-[620px]"
+            className="mt-6 text-[16px] leading-relaxed max-w-[760px]"
             style={{ color: "var(--muted)" }}
           >
             Enter a procedure, a location, and a member&apos;s plan. AnaCare returns
@@ -708,13 +705,6 @@ function CTA() {
           </em>{" "}
           surgical claim.
         </h2>
-        <p
-          className="mt-8 mx-auto text-[16px] leading-relaxed max-w-[560px]"
-          style={{ color: "var(--muted)" }}
-        >
-          Plans using AnaCare save millions per year on surgical episodes. See
-          what the platform would find on your book.
-        </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={DEMO_URL}
