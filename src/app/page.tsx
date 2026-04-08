@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BrowserWindow } from "@/components/browser-window";
 
 const PRODUCT_URL = "https://anacare-product.vercel.app/";
-const DEMO_URL = "https://cal.com/anacare/demo";
+const DEMO_PATH = "/demo";
 const CONTACT_EMAIL = "contact@anacare.ai";
 
 export default function Home() {
@@ -61,8 +61,14 @@ function Nav() {
           >
             How it works
           </a>
+          <Link
+            href="/team"
+            className="hover:text-white transition-colors"
+          >
+            Team
+          </Link>
           <a
-            href={`mailto:${CONTACT_EMAIL}`}
+            href="mailto:nash@anacare.ai"
             className="hover:text-white transition-colors"
           >
             Contact
@@ -80,9 +86,7 @@ function Nav() {
             Login
           </Link>
           <Link
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={DEMO_PATH}
             className="inline-flex items-center h-9 px-4 rounded-full text-[13px] font-medium transition-colors"
             style={{
               background: "var(--white)",
@@ -141,9 +145,7 @@ function Hero() {
         {/* CTAs */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={DEMO_PATH}
             className="inline-flex items-center h-11 px-5 rounded-full text-[13px] font-medium transition-transform hover:scale-[1.02]"
             style={{ background: "var(--white)", color: "#000" }}
           >
@@ -541,9 +543,7 @@ function Product() {
             Try the product
           </Link>
           <Link
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={DEMO_PATH}
             className="inline-flex items-center h-11 px-5 rounded-full text-[13px] font-medium border hover:bg-white/5 transition-colors"
             style={{ borderColor: "var(--line2)", color: "var(--white)" }}
           >
@@ -707,9 +707,7 @@ function CTA() {
         </h2>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
-            href={DEMO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={DEMO_PATH}
             className="inline-flex items-center h-11 px-5 rounded-full text-[13px] font-medium"
             style={{ background: "var(--white)", color: "#000" }}
           >
@@ -764,7 +762,7 @@ function Footer() {
           links={[
             { label: "Problem", href: "#problem" },
             { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
-            { label: "Request a demo", href: DEMO_URL, external: true },
+            { label: "Request a demo", href: DEMO_PATH },
           ]}
         />
         <FooterCol

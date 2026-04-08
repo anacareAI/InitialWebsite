@@ -193,7 +193,7 @@ function HeroGeometric({
             animate="visible"
           >
             <a
-              href="https://cal.com/anacare/demo"
+              href="/demo"
               target="_blank"
               rel="noopener noreferrer"
             >
